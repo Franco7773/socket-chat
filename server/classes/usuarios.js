@@ -1,50 +1,55 @@
+// {
+//     id: 'ALkjdaklsdj-asdkj',
+//     nombre: 'Fernando',
+// }
+
+
+
 class Usuarios {
 
-  constructor() {
+    constructor() {
+        this.personas = [];
+    }
 
-		this.personas = [];
-	}
+    agregarPersona(id, nombre, sala) {
 
-	agregarPersona(id, nombre, sala) {
+        let persona = { id, nombre, sala };
 
-		let persona = { id, nombre, sala };
+        this.personas.push(persona);
 
-		this.personas.push(persona);
+        return this.personas;
 
-		return this.personas;
-	}
+    }
 
-	getPersona(id) {
+    getPersona(id) {
+        let persona = this.personas.filter(persona => persona.id === id)[0];
 
-		let persona = this.personas.filter( persona => persona.id === id )[0];
+        return persona;
+    }
 
-		return persona
-	}
+    getPersonas() {
+        return this.personas;
+    }
 
-	getPersonas() {
+    getPersonasPorSala(sala) {
+        let personasEnSala = this.personas.filter(persona => persona.sala === sala);
+        return personasEnSala;
+    }
 
-		return this.personas; 
-	}
+    borrarPersona(id) {
 
-	getPersonasPorSala(sala) {
+        let personaBorrada = this.getPersona(id);
 
-		let personasEnSala = this.personas.filter( persona => persona.sala === sala );
+        this.personas = this.personas.filter(persona => persona.id != id);
 
-		return personasEnSala;
-	}
+        return personaBorrada;
 
-	borrarPersona(id) {
+    }
 
-		let personaBorrada = this.getPersona(id);
 
-		this.personas = this.personas.filter( persona => persona.id !== id );
-
-		return personaBorrada;
-	}
 }
 
 
-
 module.exports = {
-	Usuarios
-};
+    Usuarios
+}
